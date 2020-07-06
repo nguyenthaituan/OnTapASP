@@ -1,0 +1,89 @@
+﻿@model IEnumerable<OnTapASP.Models.ThanhVien>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    string gtinh = "";
+    int i = 0;
+}
+
+<h2>DANH SÁCH THÀNH VIÊN INDEX</h2>
+
+<p>
+    @Html.ActionLink("Thêm thành viên", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Mã thành viên
+        </th>
+        <th>
+            Họ thành viên
+        </th>
+        <th>
+            Tên thành viên
+        </th>
+        <th>
+            Ngày sinh
+        </th>
+        <th>
+            Giới tính
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Địa chỉ
+        </th>
+        <th>
+            Ảnh thành viên
+        </th>
+        <th>
+            Tên tỉnh
+        </th>
+        <th> Danh sách chức năng</th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.MaTV)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.HoTV)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TenTV)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NgaySinh)
+    </td>
+    <td>
+        @{if (item.GioiTinh == true)
+            { gtinh = "Nam"; }
+            else
+            { gtinh = "Nữ"; }
+        }
+        @gtinh
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DiaChi)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AnhTV)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Tinh.TenTinh)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.MaTV }) |
+        @Html.ActionLink("Details", "Details", new { id = item.MaTV }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.MaTV })
+    </td>
+</tr>
+}
+
+</table>
